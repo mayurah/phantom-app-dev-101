@@ -178,11 +178,11 @@ class XkcdConnector(BaseConnector):
             # return action_result.get_status()
 
         # Return success
-        # self.save_progress("Test Connectivity Passed")
-        # return action_result.set_status(phantom.APP_SUCCESS)
+        self.save_progress("Test Connectivity Passed")
+        return action_result.set_status(phantom.APP_SUCCESS)
 
         # For now return Error with a message, in case of success we don't set the message, but use the summary
-        return action_result.set_status(phantom.APP_ERROR, "Action not yet implemented")
+        # return action_result.set_status(phantom.APP_ERROR, "Action not yet implemented")
 
     def _handle_fetch_comic(self, param):
         # Implement the handler here
@@ -196,19 +196,19 @@ class XkcdConnector(BaseConnector):
 
         # Required values can be accessed directly
         comic_id = param['comic_id']
-
+        endpoint = '/{}/info.0.json'.format(comic_id)
         # Optional values should use the .get() function
         # optional_parameter = param.get('optional_parameter', 'default_value')
 
         # make rest call
         ret_val, response = self._make_rest_call(
-            '/101/info.0.json', action_result, params=None, headers=None
+            endpoint, action_result, params=None, headers=None
         )
 
         if phantom.is_fail(ret_val):
             # the call to the 3rd party device or service failed, action result should contain all the error details
             # for now the return is commented out, but after implementation, return from here
-            # return action_result.get_status()
+            return action_result.get_status()
             pass
 
         # Now post process the data,  uncomment code as you deem fit
@@ -222,10 +222,10 @@ class XkcdConnector(BaseConnector):
 
         # Return success, no need to set the message, only the status
         # BaseConnector will create a textual message based off of the summary dictionary
-        # return action_result.set_status(phantom.APP_SUCCESS)
+        return action_result.set_status(phantom.APP_SUCCESS)
 
         # For now return Error with a message, in case of success we don't set the message, but use the summary
-        return action_result.set_status(phantom.APP_ERROR, "Action not yet implemented")
+        # return action_result.set_status(phantom.APP_ERROR, "Action not yet implemented")
 
     def handle_action(self, param):
         ret_val = phantom.APP_SUCCESS
