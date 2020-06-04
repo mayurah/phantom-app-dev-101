@@ -61,7 +61,7 @@ ssh -n "$PHANTOM_USER"@"$PHANTOM_HOST" "$REMOTE_SCRIPT_INIT"
 
 # Transfer Changes
 echo "[-] Changes on the way to Phantom 🛫 "
-# scp -r . "$PHANTOM_USER"@"$PHANTOM_HOST":$INSTALL_DIR/$APP_DIR_NAME/
+
 # Using rsync instead of scp for increamental remote push saving us couple of seconds!
 rsync  --exclude 'builds' -ru . "$PHANTOM_USER"@"$PHANTOM_HOST":$INSTALL_DIR/$APP_DIR_NAME/
 echo "Phantom received files 🛬 "
@@ -72,13 +72,11 @@ ssh -n "$PHANTOM_USER"@"$PHANTOM_HOST" "$REMOTE_SCRIPT_DEPLOY"
 
 # For macOS, open App Url
 echo "[-] Open Apps Url"
-# sleep 1
-# open -a "Google Chrome"
 
 # Create builds directory to store each build
 mkdir -p builds
 
 # Transfer the recent build from Remote Server
-scp "$PHANTOM_USER"@"$PHANTOM_HOST":$INSTALL_DIR/$APP_DIR_NAME.tgz ./builds/$APP_DIR_NAME_`date '+%A_%W_%Y_%X'`.tgz
+scp "$PHANTOM_USER"@"$PHANTOM_HOST":$INSTALL_DIR/$APP_DIR_NAME.tgz ./builds/$APP_DIR_NAME"_"`date '+%A_%W_%Y_%X'`.tgz
 echo "---"
 echo "[-] Done executing deploy script :)"

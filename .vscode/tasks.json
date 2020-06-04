@@ -14,6 +14,18 @@
                 "panel": "shared",
                 "focus":true
             }
+        },
+        {
+            "label": "Clear Phantom builds",
+            "type": "shell",
+            "command": "rm -rf builds/*.tgz",
+            "group": "build",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "focus":true
+            }
         }
     ]
 }
