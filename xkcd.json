@@ -83,10 +83,90 @@
                 {
                     "data_path": "summary.total_objects_successful",
                     "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.title",
+                    "data_type": "string",
+                    "column_name": "Title",
+                    "column_order": 2
+                },
+                {
+                    "data_path": "action_result.data.*.img",
+                    "data_type": "string",
+                    "column_name": "Image Url",
+                    "column_order": 3
+
                 }
             ],
             "render": {
                 "type": "table"
+            },
+            "versions": "EQ(*)"
+        },        {
+            "action": "show comic",
+            "identifier": "show_comic",
+            "description": "show comic from xkcd",
+            "verbose": "This action shows comic based on given comic ID, and shows it in the widget area.",
+            "type": "generic",
+            "read_only": false,
+            "parameters": {
+                "comic_id": {
+                    "description": "Comic ID",
+                    "data_type": "string",
+                    "required": true,
+                    "primary": true,
+                    "contains": [],
+                    "value_list": [],
+                    "default": "101",
+                    "order": 0
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.parameter.comic_id",
+                    "data_type": "string",
+                    "contains": [],
+                    "column_name": "comic_id",
+                    "column_order": 0
+                },
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "column_name": "status",
+                    "column_order": 1
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric"
+                },
+                {
+                    "data_path": "action_result.data.*.title",
+                    "data_type": "string",
+                    "column_name": "Title",
+                    "column_order": 2
+                },
+                {
+                    "data_path": "action_result.data.*.img",
+                    "data_type": "string",
+                    "column_name": "Image Url",
+                    "column_order": 3
+
+                }
+            ],
+            "render": {
+                "width": 10,
+                "view": "xkcd_view.display_image",
+                "type": "custom",
+                "title": "xkcd",
+                "height": 5
             },
             "versions": "EQ(*)"
         }
